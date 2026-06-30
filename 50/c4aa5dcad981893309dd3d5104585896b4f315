@@ -1,0 +1,19 @@
+src/components/shared/SignatureVerifier.tsx
+  s_9ead5b04687f5d::t_62cbf74a7fca3d 24-25,36,41,83-99,103-111,114-155,167
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "50c4aa5dcad981893309dd3d5104585896b4f315",
+  "prompts": {},
+  "sessions": {
+    "s_9ead5b04687f5d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8c22d915-4889-4cd8-be11-e674e8a660ce",
+        "model": "unknown"
+      },
+      "human_author": "Adham Samir <adhamsamir.work@gmail.com>"
+    }
+  }
+}
