@@ -1,0 +1,23 @@
+src/utils/jwt/decode.ts
+  s_9ead5b04687f5d::t_8eaa9a0520b04d 1-136
+src/utils/jwt/encode.ts
+  s_9ead5b04687f5d::t_3110346ce784bd 1-38
+src/utils/jwt/sign.ts
+  s_9ead5b04687f5d::t_99694a8b52cb4e 1-94
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "b9bc4a85f25c79217115f6b642fab9d25707bb50",
+  "prompts": {},
+  "sessions": {
+    "s_9ead5b04687f5d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8c22d915-4889-4cd8-be11-e674e8a660ce",
+        "model": "unknown"
+      },
+      "human_author": "Adham Samir <adhamsamir.work@gmail.com>"
+    }
+  }
+}
