@@ -13,16 +13,16 @@ interface SignatureVerifierProps {
   signatureBytes: Uint8Array
 }
 
-type KeyType = 'hmac' | 'pem'
 type VerifyResult = { valid: boolean; message: string } | null
 
 export function SignatureVerifier({ algorithm, messageBytes, signatureBytes }: SignatureVerifierProps) {
-  const [keyType, setKeyType] = useState<KeyType>('hmac')
   const [keyText, setKeyText] = useState('')
   const [isVerifying, setIsVerifying] = useState(false)
   const [result, setResult] = useState<VerifyResult>(null)
 
   const alg = (algorithm || 'none') as JwtAlgorithm
+  const isHmac = alg.startsWith('HS')
+  const isNoneAlg = alg === 'none'
 
   const handleVerify = useCallback(async () => {
     if (!keyText.trim() || !signatureBytes.length) return
@@ -33,24 +33,21 @@ export function SignatureVerifier({ algorithm, messageBytes, signatureBytes }: S
     try {
       let valid = false
 
-      if (alg === 'none') {
+      if (isNoneAlg) {
         setResult({ valid: false, message: 'Token uses "none" algorithm — no signature to verify.' })
         return
       }
 
-      if (alg.startsWith('HS')) {
-        // HMAC
+      if (isHmac) {
         const secret = new TextEncoder().encode(keyText)
         valid = await hmacVerify(alg as 'HS256' | 'HS384' | 'HS512', secret, signatureBytes.buffer as ArrayBuffer, messageBytes)
 
       } else if (alg.startsWith('RS')) {
-        // RSA PKCS1v15
         const hash = ALGORITHM_TO_HASH[alg] || 'SHA-256'
         const publicKey = await importPublicKeyPEM(keyText, rsaImportParams(hash))
         valid = await rsaVerify(publicKey, signatureBytes.buffer as ArrayBuffer, messageBytes)
 
       } else if (alg.startsWith('PS')) {
-        // RSA-PSS
         const hash = ALGORITHM_TO_HASH[alg] || 'SHA-256'
         const keyData = await importPublicKeyPEM(keyText, rsaPssImportParams(hash))
         valid = await crypto.subtle.verify(
@@ -61,7 +58,6 @@ export function SignatureVerifier({ algorithm, messageBytes, signatureBytes }: S
         )
 
       } else if (alg.startsWith('ES')) {
-        // ECDSA
         const curveMap: Record<string, string> = { ES256: 'P-256', ES384: 'P-384', ES512: 'P-521' }
         const curve = curveMap[alg] || 'P-256'
         const publicKey = await importPublicKeyPEM(keyText, ecImportParams(curve))
@@ -84,103 +80,80 @@ export function SignatureVerifier({ algorithm, messageBytes, signatureBytes }: S
     } finally {
       setIsVerifying(false)
     }
-  }, [keyText, alg, signatureBytes, messageBytes])
+  }, [keyText, alg, isHmac, isNoneAlg, signatureBytes, messageBytes])
 
-  const isNoneAlg = alg === 'none'
+  if (isNoneAlg) {
+    return (
+      <div style={{
+        padding: '10px 14px', background: 'var(--bg-code)', border: '1px solid var(--border)',
+        borderRadius: 'var(--radius-sm)', fontSize: 13, color: 'var(--text-muted)', fontFamily: 'var(--mono)',
+      }}>
+        Algorithm is "none" — no signature to verify
+      </div>
+    )
+  }
+
+  const inputLabel = isHmac ? 'HMAC Secret' : 'Public Key (PEM)'
+  const placeholder = isHmac
+    ? 'Paste HMAC secret...'
+    : '-----BEGIN PUBLIC KEY-----\n...\n-----END PUBLIC KEY-----'
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-      {isNoneAlg ? (
-        <div style={{
-          padding: '10px 14px',
-          background: 'var(--bg-code)',
-          border: '1px solid var(--border)',
-          borderRadius: 'var(--radius-sm)',
-          fontSize: 13,
-          color: 'var(--text-muted)',
+      <div style={{
+        display: 'flex', alignItems: 'center', gap: 8,
+        fontSize: 12, fontWeight: 600, color: 'var(--text-muted)',
+        textTransform: 'uppercase', letterSpacing: '0.5px',
+      }}>
+        {inputLabel}
+        <span style={{
+          fontSize: 10, fontWeight: 400, color: 'var(--text-muted)',
+          background: 'var(--bg-code)', padding: '1px 6px', borderRadius: 'var(--radius-sm)',
           fontFamily: 'var(--mono)',
         }}>
-          Algorithm is "none" — no signature to verify
-        </div>
-      ) : (
-        <>
-          {/* Key type selector */}
-          <div style={{ display: 'flex', gap: 0 }}>
-            {([
-              { id: 'hmac' as KeyType, label: 'HMAC Secret' },
-              { id: 'pem' as KeyType, label: 'Public Key (PEM)' },
-            ]).map(kt => (
-              <button
-                key={kt.id}
-                onClick={() => { setKeyType(kt.id); setResult(null) }}
-                style={{
-                  padding: '5px 14px',
-                  fontSize: 12,
-                  fontWeight: keyType === kt.id ? 600 : 400,
-                  border: `1px solid ${keyType === kt.id ? 'var(--accent)' : 'var(--border)'}`,
-                  background: keyType === kt.id ? 'var(--accent-bg)' : 'var(--bg-tertiary)',
-                  color: keyType === kt.id ? 'var(--accent)' : 'var(--text-secondary)',
-                  cursor: 'pointer',
-                  fontFamily: 'var(--sans)',
-                  transition: 'all var(--transition-fast)',
-                }}
-              >
-                {kt.label}
-              </button>
-            ))}
-          </div>
+          auto-detected from {alg}
+        </span>
+      </div>
 
-          {/* Key input */}
-          <textarea
-            value={keyText}
-            onChange={e => { setKeyText(e.target.value); setResult(null) }}
-            placeholder={keyType === 'hmac' ? 'Paste HMAC secret...' : '-----BEGIN PUBLIC KEY-----\n...\n-----END PUBLIC KEY-----'}
-            spellCheck={false}
-            style={{
-              width: '100%',
-              minHeight: keyType === 'pem' ? 120 : 50,
-              padding: '10px 12px',
-              border: '1px solid var(--border)',
-              borderRadius: 'var(--radius-md)',
-              background: 'var(--bg-code)',
-              color: 'var(--text-primary)',
-              fontFamily: 'var(--mono)',
-              fontSize: 12,
-              outline: 'none',
-              resize: 'vertical',
-              transition: 'border-color var(--transition-fast)',
-            }}
-            onFocus={e => e.currentTarget.style.borderColor = 'var(--accent)'}
-            onBlur={e => e.currentTarget.style.borderColor = 'var(--border)'}
-          />
+      <textarea
+        value={keyText}
+        onChange={e => { setKeyText(e.target.value); setResult(null) }}
+        placeholder={placeholder}
+        spellCheck={false}
+        style={{
+          width: '100%',
+          minHeight: isHmac ? 50 : 120,
+          padding: '10px 12px',
+          border: '1px solid var(--border)',
+          borderRadius: 'var(--radius-md)',
+          background: 'var(--bg-code)',
+          color: 'var(--text-primary)',
+          fontFamily: 'var(--mono)',
+          fontSize: 12,
+          outline: 'none',
+          resize: 'vertical',
+          transition: 'border-color var(--transition-fast)',
+        }}
+        onFocus={e => e.currentTarget.style.borderColor = 'var(--accent)'}
+        onBlur={e => e.currentTarget.style.borderColor = 'var(--border)'}
+      />
 
-          {/* Verify button */}
-          <button
-            onClick={handleVerify}
-            disabled={isVerifying || !keyText.trim()}
-            style={{
-              padding: '8px 20px',
-              border: 'none',
-              borderRadius: 'var(--radius-md)',
-              background: keyText.trim() ? 'var(--accent)' : 'var(--bg-tertiary)',
-              color: keyText.trim() ? '#fff' : 'var(--text-muted)',
-              fontWeight: 600,
-              fontSize: 13,
-              fontFamily: 'var(--sans)',
-              cursor: keyText.trim() ? 'pointer' : 'not-allowed',
-              transition: 'all var(--transition-fast)',
-              width: 'fit-content',
-              display: 'flex',
-              alignItems: 'center',
-              gap: 8,
-            }}
-          >
-            {isVerifying ? 'Verifying...' : 'Verify Signature'}
-          </button>
-        </>
-      )}
+      <button
+        onClick={handleVerify}
+        disabled={isVerifying || !keyText.trim()}
+        style={{
+          padding: '8px 20px', border: 'none', borderRadius: 'var(--radius-md)',
+          background: keyText.trim() ? 'var(--accent)' : 'var(--bg-tertiary)',
+          color: keyText.trim() ? '#fff' : 'var(--text-muted)',
+          fontWeight: 600, fontSize: 13, fontFamily: 'var(--sans)',
+          cursor: keyText.trim() ? 'pointer' : 'not-allowed',
+          transition: 'all var(--transition-fast)', width: 'fit-content',
+          display: 'flex', alignItems: 'center', gap: 8,
+        }}
+      >
+        {isVerifying ? 'Verifying...' : 'Verify Signature'}
+      </button>
 
-      {/* Result */}
       <AnimatePresence>
         {result && (
           <motion.div
@@ -191,9 +164,7 @@ export function SignatureVerifier({ algorithm, messageBytes, signatureBytes }: S
               padding: '10px 14px',
               background: result.valid ? 'var(--success-bg)' : 'var(--danger-bg)',
               border: `1px solid ${result.valid ? 'var(--success)' : 'var(--danger)'}`,
-              borderRadius: 'var(--radius-sm)',
-              fontSize: 13,
-              fontWeight: 500,
+              borderRadius: 'var(--radius-sm)', fontSize: 13, fontWeight: 500,
               color: result.valid ? 'var(--success)' : 'var(--danger)',
               fontFamily: 'var(--mono)',
             }}
