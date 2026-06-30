@@ -1,0 +1,19 @@
+src/components/encoder/EncoderPanel.tsx
+  s_9ead5b04687f5d::t_3730ab447445a9 1,3,13-14,18-29
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "3b79c062b5c0ce76d3718de59bc03df242771eae",
+  "prompts": {},
+  "sessions": {
+    "s_9ead5b04687f5d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8c22d915-4889-4cd8-be11-e674e8a660ce",
+        "model": "unknown"
+      },
+      "human_author": "Adham Samir <adhamsamir.work@gmail.com>"
+    }
+  }
+}
