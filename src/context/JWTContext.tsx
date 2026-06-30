@@ -61,7 +61,7 @@ export type JWTAction =
 function jwtReducer(state: JWTState, action: JWTAction): JWTState {
   switch (action.type) {
     case 'SET_ACTIVE_TAB':
-      return { ...state, activeTab: action.tab, forgeError: null }
+      return { ...state, activeTab: action.tab, forgedToken: null, forgeError: null, isForging: false }
 
     case 'SET_TOKEN':
       return {
