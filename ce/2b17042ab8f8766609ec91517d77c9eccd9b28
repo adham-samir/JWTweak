@@ -1,0 +1,27 @@
+src/utils/crypto/ecdsa.ts
+  s_9ead5b04687f5d::t_5f2bceb08c1eac 1-32
+src/utils/crypto/hmac.ts
+  s_9ead5b04687f5d::t_3c4a1224cdd542 1-61
+src/utils/crypto/jwk-utils.ts
+  s_9ead5b04687f5d::t_74ac742056a0a8 1-125
+src/utils/crypto/keygen.ts
+  s_9ead5b04687f5d::t_34210f72645f74 1-228
+src/utils/crypto/rsa.ts
+  s_9ead5b04687f5d::t_5963d9b2ede538 1-31
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "ce2b17042ab8f8766609ec91517d77c9eccd9b28",
+  "prompts": {},
+  "sessions": {
+    "s_9ead5b04687f5d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8c22d915-4889-4cd8-be11-e674e8a660ce",
+        "model": "unknown"
+      },
+      "human_author": "Adham Samir <adhamsamir.work@gmail.com>"
+    }
+  }
+}
