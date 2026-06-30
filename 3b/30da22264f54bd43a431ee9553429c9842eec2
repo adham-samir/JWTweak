@@ -1,0 +1,19 @@
+src/utils/crypto/hmac.ts
+  s_9ead5b04687f5d::t_ab58cd68adc29c 7-25,27-37,39-43,50,59-64,69,86-95,100
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "3b30da22264f54bd43a431ee9553429c9842eec2",
+  "prompts": {},
+  "sessions": {
+    "s_9ead5b04687f5d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8c22d915-4889-4cd8-be11-e674e8a660ce",
+        "model": "unknown"
+      },
+      "human_author": "Adham Samir <adhamsamir.work@gmail.com>"
+    }
+  }
+}
