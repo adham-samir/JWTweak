@@ -1,0 +1,19 @@
+src/constants/kid-payloads.ts
+  s_9ead5b04687f5d::t_48a634673235b1 4-5,8,10,15,17,21-22,25,27,32-34,39,41,45-46,49-52,56-58,62-63,66,68,73,75
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "6a1e4c8ceee4b47169b8e06b667c6169f25a35e3",
+  "prompts": {},
+  "sessions": {
+    "s_9ead5b04687f5d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8c22d915-4889-4cd8-be11-e674e8a660ce",
+        "model": "unknown"
+      },
+      "human_author": "Adham Samir <adhamsamir.work@gmail.com>"
+    }
+  }
+}
