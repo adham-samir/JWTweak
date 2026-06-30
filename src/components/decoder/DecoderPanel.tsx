@@ -5,7 +5,7 @@ import { TokenDisplay } from '../shared/TokenDisplay'
 import { ClaimLabels } from '../shared/ClaimLabels'
 import { CopyButton } from '../shared/CopyButton'
 import { SAMPLE_TOKENS } from '../../constants/sample-tokens'
-import { toHex } from '../../utils/hex'
+import { SignatureVerifier } from '../shared/SignatureVerifier'
 
 export function DecoderPanel() {
   const { rawToken, decoded, decodeError, setToken, clearToken } = useJWT()
@@ -285,28 +285,11 @@ export function DecoderPanel() {
                   </div>
 
                   <div style={{ padding: '8px 14px' }}>
-                    <div style={{
-                      fontSize: 11,
-                      fontWeight: 600,
-                      color: 'var(--text-muted)',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.5px',
-                      marginBottom: 4,
-                    }}>
-                      Hex
-                    </div>
-                    <pre style={{
-                      fontFamily: 'var(--mono)',
-                      fontSize: 11,
-                      color: 'var(--text-secondary)',
-                      margin: 0,
-                      whiteSpace: 'pre-wrap',
-                      wordBreak: 'break-all',
-                      maxHeight: 120,
-                      overflowY: 'auto',
-                    }}>
-                      {toHex(decoded.signature.bytes)}
-                    </pre>
+                    <SignatureVerifier
+                      algorithm={decoded.header.json.alg as string}
+                      messageBytes={new TextEncoder().encode(`${decoded.parts.headerB64}.${decoded.parts.payloadB64}`)}
+                      signatureBytes={decoded.signature.bytes}
+                    />
                   </div>
                 </div>
               )}

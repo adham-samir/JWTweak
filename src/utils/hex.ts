@@ -26,20 +26,3 @@ export function fromHex(hex: string): Uint8Array {
   return bytes
 }
 
-/**
- * Format bytes as hex with optional grouping.
- */
-export function formatHex(bytes: Uint8Array, _groupSize = 2, groupsPerLine = 16): string {
-  const hex = toHex(bytes)
-  const chunks: string[] = []
-  for (let i = 0; i < hex.length; i += 2) {
-    chunks.push(hex.slice(i, i + 2))
-  }
-
-  const lines: string[] = []
-  for (let i = 0; i < chunks.length; i += groupsPerLine) {
-    lines.push(chunks.slice(i, i + groupsPerLine).join(' '))
-  }
-
-  return lines.join('\n')
-}
