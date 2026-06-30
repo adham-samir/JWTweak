@@ -140,6 +140,7 @@ export function DecoderPanel() {
                     fontWeight: 500,
                     transition: 'all var(--transition-fast)',
                     textAlign: 'left',
+                    maxWidth: 320,
                   }}
                   onMouseEnter={e => {
                     e.currentTarget.style.borderColor = 'var(--accent)'
@@ -152,6 +153,29 @@ export function DecoderPanel() {
                 >
                   <div style={{ fontWeight: 600 }}>{sample.label}</div>
                   <div style={{ fontSize: 11, opacity: 0.7, marginTop: 1 }}>{sample.description}</div>
+                  {sample.publicKey && (
+                    <div
+                      onClick={e => {
+                        e.stopPropagation()
+                        navigator.clipboard.writeText(sample.publicKey!)
+                      }}
+                      style={{
+                        marginTop: 6,
+                        padding: '3px 8px',
+                        fontSize: 10,
+                        border: '1px solid var(--border)',
+                        borderRadius: 'var(--radius-sm)',
+                        background: 'var(--bg-code)',
+                        color: 'var(--accent)',
+                        fontFamily: 'var(--mono)',
+                        cursor: 'pointer',
+                      }}
+                      onMouseEnter={e => e.currentTarget.style.borderColor = 'var(--accent)'}
+                      onMouseLeave={e => e.currentTarget.style.borderColor = 'var(--border)'}
+                    >
+                      📋 Copy verification key
+                    </div>
+                  )}
                 </button>
               ))}
             </div>
