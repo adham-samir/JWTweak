@@ -1,0 +1,25 @@
+src/components/attacks/jku-injection/JkuInjectionPanel.tsx
+  s_9ead5b04687f5d::t_75a787ad592539 9,141,148,160,188-219
+src/components/attacks/jwk-embedding/JwkEmbeddingPanel.tsx
+  s_9ead5b04687f5d::t_3f5a8cdb0797b4 9,146-189
+src/components/shared/CollapsibleBox.tsx
+  s_9ead5b04687f5d::t_3cefba2a56276c 1-134
+src/components/shared/TokenDisplay.tsx
+  s_9ead5b04687f5d::t_3fc324b1cf0960 1,60-63,68-79
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "fdc7f988c624d6e42a3130e9d81609853a93b1c9",
+  "prompts": {},
+  "sessions": {
+    "s_9ead5b04687f5d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8c22d915-4889-4cd8-be11-e674e8a660ce",
+        "model": "unknown"
+      },
+      "human_author": "Adham Samir <adhamsamir.work@gmail.com>"
+    }
+  }
+}
