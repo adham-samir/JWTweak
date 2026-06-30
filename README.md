@@ -1,5 +1,9 @@
 # JWTweak
 
+<p align="center">
+  <img src="JWTweak.png" alt="JWTweak" width="600">
+</p>
+
 **The attacker-minded JWT toolkit.** Forge, audit & break JSON Web Tokens — entirely in your browser.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
