@@ -1,0 +1,19 @@
+src/constants/sample-tokens.ts
+  s_9ead5b04687f5d::t_a6eb47c83b2f2a 10-12,16-19
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "80a1f547d5b950feeb16bfd0562d1b494b28649f",
+  "prompts": {},
+  "sessions": {
+    "s_9ead5b04687f5d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8c22d915-4889-4cd8-be11-e674e8a660ce",
+        "model": "unknown"
+      },
+      "human_author": "Adham Samir <adhamsamir.work@gmail.com>"
+    }
+  }
+}
