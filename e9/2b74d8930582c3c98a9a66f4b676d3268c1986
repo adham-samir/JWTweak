@@ -1,0 +1,19 @@
+src/components/layout/TopNav.tsx
+  s_9ead5b04687f5d::t_7d9c0ec0f99c9a 84,88-89,94-96
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "e92b74d8930582c3c98a9a66f4b676d3268c1986",
+  "prompts": {},
+  "sessions": {
+    "s_9ead5b04687f5d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8c22d915-4889-4cd8-be11-e674e8a660ce",
+        "model": "unknown"
+      },
+      "human_author": "Adham Samir <adhamsamir.work@gmail.com>"
+    }
+  }
+}
