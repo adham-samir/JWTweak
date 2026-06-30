@@ -7,16 +7,16 @@ export interface SampleToken {
 
 export const SAMPLE_TOKENS: SampleToken[] = [
   {
-    label: 'HS256 (simple)',
-    description: 'Simple HMAC-SHA256 token with "admin" subject',
-    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsIm5hbWUiOiJUZXN0IFVzZXIiLCJpYXQiOjE3ODI4MTczMzksImV4cCI6MjU1NjIzOTczOX0.2g0wM7xY5sD7Bq8Kp3vRfLmNtZwQhJkVcXbFdEaYu_I',
+    label: 'HS256 (valid)',
+    description: 'HMAC-SHA256 signed with secret "secret" — verify it in the signature section',
+    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsIm5hbWUiOiJUZXN0IFVzZXIiLCJpYXQiOjE3ODI4MTczMzksImV4cCI6MjU1NjIzOTczOX0.NMo-BMgxMzMYca41QTLor7vfyJM44LLMisQmgwp1t-U',
     algorithm: 'HS256',
   },
   {
-    label: 'RS256 (expired)',
-    description: 'RSA-signed JWT — already expired',
-    token: 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0ZXIiLCJpYXQiOjE3ODI4MTczMzksImV4cCI6MTc4MjgyMDk0MCwibmFtZSI6IkV4cGlyZWQgVG9rZW4ifQ.fake-signature',
-    algorithm: 'RS256',
+    label: 'HS256 (expired)',
+    description: 'HMAC-SHA256 token — already expired, see the ⚠ claim label',
+    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0ZXIiLCJpYXQiOjE3ODI4MTczMzksImV4cCI6MTc4MjgyMDk0MCwibmFtZSI6IkV4cGlyZWQgVG9rZW4ifQ.iu0GcUevjBqB-TFQ8AXSYKgWMpZPu-Z-6QCkHRgV2UE',
+    algorithm: 'HS256',
   },
   {
     label: 'none (no signature)',
