@@ -67,26 +67,6 @@ export function HomePage() {
         </p>
       </div>
 
-      {/* Trust badges */}
-      <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        gap: 16,
-      }}>
-        {['No backend', 'No tracking', 'WebCrypto only'].map(badge => (
-          <span key={badge} style={{
-            padding: '6px 16px',
-            border: '1px solid var(--border)',
-            borderRadius: 'var(--radius-lg)',
-            fontSize: 13,
-            color: 'var(--text-muted)',
-            fontWeight: 500,
-          }}>
-            {badge}
-          </span>
-        ))}
-      </div>
-
       {/* Feature cards */}
       <div style={{
         display: 'grid',
