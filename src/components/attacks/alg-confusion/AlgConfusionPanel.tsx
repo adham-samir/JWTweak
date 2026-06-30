@@ -173,35 +173,11 @@ export function AlgConfusionPanel() {
         )}
 
         {/* Forge button */}
-        <button
+        <ForgeButton
+          isForging={isForging}
+          canForge={signingAlgorithm === 'none' || !!pemContent}
           onClick={handleForge}
-          disabled={isForging || (signingAlgorithm !== 'none' && !pemContent)}
-          style={{
-            padding: '10px 24px',
-            border: 'none',
-            borderRadius: 'var(--radius-md)',
-            background: pemContent ? 'var(--accent)' : 'var(--bg-tertiary)',
-            color: pemContent ? '#fff' : 'var(--text-muted)',
-            fontWeight: 600,
-            fontSize: 14,
-            fontFamily: 'var(--sans)',
-            cursor: pemContent ? 'pointer' : 'not-allowed',
-            transition: 'all var(--transition-fast)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 8,
-            width: 'fit-content',
-          }}
-          onMouseEnter={e => {
-            if (pemContent) e.currentTarget.style.background = 'var(--accent-hover)'
-          }}
-          onMouseLeave={e => {
-            if (pemContent) e.currentTarget.style.background = 'var(--accent)'
-          }}
-        >
-          {isForging ? 'Forging...' : '🔨 Forge Token'}
-        </button>
+        />
 
         <OutputToken token={forgedToken} error={forgeError} isForging={isForging} />
       </div>
@@ -210,6 +186,40 @@ export function AlgConfusionPanel() {
 }
 
 // Reusable panel components
+function ForgeButton({ isForging, canForge, onClick }: { isForging: boolean; canForge: boolean; onClick: () => void }) {
+  return (
+    <button
+      onClick={onClick}
+      disabled={isForging || !canForge}
+      style={{
+        padding: '10px 24px',
+        border: 'none',
+        borderRadius: 'var(--radius-md)',
+        background: canForge ? 'var(--accent)' : 'var(--bg-tertiary)',
+        color: canForge ? '#fff' : 'var(--text-muted)',
+        fontWeight: 600,
+        fontSize: 14,
+        fontFamily: 'var(--sans)',
+        cursor: canForge ? 'pointer' : 'not-allowed',
+        transition: 'all var(--transition-fast)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 8,
+        width: 'fit-content',
+      }}
+      onMouseEnter={e => {
+        if (canForge) e.currentTarget.style.background = 'var(--accent-hover)'
+      }}
+      onMouseLeave={e => {
+        if (canForge) e.currentTarget.style.background = 'var(--accent)'
+      }}
+    >
+      {isForging ? 'Forging...' : '🔨 Forge Token'}
+    </button>
+  )
+}
+
 function PanelHeader({ title, desc, icon }: { title: string; desc: string; icon: string }) {
   return (
     <div style={{
