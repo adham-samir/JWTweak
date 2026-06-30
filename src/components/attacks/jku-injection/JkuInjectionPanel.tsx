@@ -217,6 +217,13 @@ export function JkuInjectionPanel() {
           </motion.div>
         )}
 
+        {/* Header editor */}
+        <JsonEditor
+          label="Header"
+          value={modifiedHeader || {}}
+          onChange={setModifiedHeader}
+        />
+
         {/* Payload editor */}
         <JsonEditor
           label="Payload"
