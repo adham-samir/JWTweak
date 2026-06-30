@@ -1,0 +1,22 @@
+src/App.tsx
+  s_ad3d7255f64786::t_23df52bedd8119 51
+  s_ad3d7255f64786::t_d1a0a48209fe4c 8
+package-lock.json
+  s_ad3d7255f64786::t_b4c1c0c89b3f51 2-3,8-9,11,759-800
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "3934e8c87fa199b9254ccabf55f83894d56e9307",
+  "prompts": {},
+  "sessions": {
+    "s_ad3d7255f64786": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bf1162be-7627-4f46-ad0c-6461843f5641",
+        "model": "deepseek-v4-flash"
+      },
+      "human_author": "Adham Samir <adhamsamir.work@gmail.com>"
+    }
+  }
+}
