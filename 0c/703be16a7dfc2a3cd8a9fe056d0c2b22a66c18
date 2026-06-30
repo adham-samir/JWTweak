@@ -1,0 +1,59 @@
+.gitignore
+  s_9ead5b04687f5d::t_f92b471abbc600 1-4
+package-lock.json
+  s_9ead5b04687f5d::t_62b1050ce2d5e8 1-1460
+public/favicon.svg
+  s_9ead5b04687f5d::t_852264c623b9d8 1
+public/icons.svg
+  s_9ead5b04687f5d::t_d823af2c4f419d 1-24
+tsconfig.app.json
+  s_9ead5b04687f5d::t_136f3f3e504eab 1-26
+tsconfig.json
+  s_9ead5b04687f5d::t_7fee543dba6962 1-7
+tsconfig.node.json
+  s_9ead5b04687f5d::t_13b4b714e80d48 1-23
+vite.config.ts
+  s_9ead5b04687f5d::t_f07bbb07f236fb 1-7
+index.html
+  s_9ead5b04687f5d::t_88f9cce7c9f597 1-15
+package.json
+  s_9ead5b04687f5d::t_0b776563668a04 1-26
+src/constants/algorithms.ts
+  s_9ead5b04687f5d::t_cad9b85e13cf1a 1-50
+src/constants/kid-payloads.ts
+  s_9ead5b04687f5d::t_0f6af42de0a55a 1-125
+src/constants/sample-tokens.ts
+  s_9ead5b04687f5d::t_e390ec9d3ea47a 1-27
+src/index.css
+  s_9ead5b04687f5d::t_79e3d324d87490 1-162
+src/main.tsx
+  s_9ead5b04687f5d::t_813a1e87539e99 1-10
+src/types/crypto.types.ts
+  s_9ead5b04687f5d::t_3bc2ffcd2186ee 1-37
+src/types/jwt.types.ts
+  s_9ead5b04687f5d::t_a1cd7360d358f0 1-50
+src/utils/base64url.ts
+  s_9ead5b04687f5d::t_5f84df621e5a52 1-124
+src/utils/claims.ts
+  s_9ead5b04687f5d::t_1368c802dfd684 1-137
+src/utils/hex.ts
+  s_9ead5b04687f5d::t_83df33bccca297 1-45
+src/utils/pem.ts
+  s_9ead5b04687f5d::t_d118a3f1b1db92 1-100
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "0c703be16a7dfc2a3cd8a9fe056d0c2b22a66c18",
+  "prompts": {},
+  "sessions": {
+    "s_9ead5b04687f5d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8c22d915-4889-4cd8-be11-e674e8a660ce",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "Adham Samir <adhamsamir.work@gmail.com>"
+    }
+  }
+}
