@@ -1,0 +1,22 @@
+jwt.txt
+  s_96d3504489b4a6::t_ff6f558c087c91 2-9
+  s_96d3504489b4a6::t_087f6798660d01 1
+README.md
+  s_96d3504489b4a6::t_1217fb5623e6d5 3-6
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "661ffac9dcd3b8e2098eaaad6be91ab75e7179e2",
+  "prompts": {},
+  "sessions": {
+    "s_96d3504489b4a6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1a255a0e-efbd-40ef-b3e2-8e520a32263a",
+        "model": "deepseek-v4-flash"
+      },
+      "human_author": "Adham Samir <adhamsamir.work@gmail.com>"
+    }
+  }
+}
