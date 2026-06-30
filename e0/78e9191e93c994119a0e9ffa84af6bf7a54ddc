@@ -1,0 +1,23 @@
+src/components/attacks/jku-injection/JkuInjectionPanel.tsx
+  s_9ead5b04687f5d::t_7296ca5a41b1b7 35,39-40
+src/components/attacks/jwk-embedding/JwkEmbeddingPanel.tsx
+  s_9ead5b04687f5d::t_58323522d64e82 56
+src/hooks/useForgedToken.ts
+  s_9ead5b04687f5d::t_c96237bc55c098 26,28-29,39
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "e078e9191e93c994119a0e9ffa84af6bf7a54ddc",
+  "prompts": {},
+  "sessions": {
+    "s_9ead5b04687f5d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8c22d915-4889-4cd8-be11-e674e8a660ce",
+        "model": "unknown"
+      },
+      "human_author": "Adham Samir <adhamsamir.work@gmail.com>"
+    }
+  }
+}
