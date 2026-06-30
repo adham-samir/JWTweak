@@ -1,0 +1,27 @@
+src/App.tsx
+  s_9ead5b04687f5d::t_8d0cd9d36b36de 1-85
+src/context/JWTContext.tsx
+  s_9ead5b04687f5d::t_0170057db713c5 1-167
+src/hooks/useForgedToken.ts
+  s_9ead5b04687f5d::t_e6d4bcd43c13e1 1-76
+src/hooks/useJWT.ts
+  s_9ead5b04687f5d::t_19d5dd16111e78 1-52
+src/hooks/useKeyManager.ts
+  s_9ead5b04687f5d::t_2a937322e0ddfa 1-114
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "90af97a226a8266bc542df4e97b5f5e1c9479914",
+  "prompts": {},
+  "sessions": {
+    "s_9ead5b04687f5d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8c22d915-4889-4cd8-be11-e674e8a660ce",
+        "model": "unknown"
+      },
+      "human_author": "Adham Samir <adhamsamir.work@gmail.com>"
+    }
+  }
+}
