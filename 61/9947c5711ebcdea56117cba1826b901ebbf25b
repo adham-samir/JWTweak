@@ -1,0 +1,19 @@
+README.md
+  s_9ead5b04687f5d::t_a3b9c7eb7f2e7f 2-68
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "619947c5711ebcdea56117cba1826b901ebbf25b",
+  "prompts": {},
+  "sessions": {
+    "s_9ead5b04687f5d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8c22d915-4889-4cd8-be11-e674e8a660ce",
+        "model": "unknown"
+      },
+      "human_author": "Adham Samir <adhamsamir.work@gmail.com>"
+    }
+  }
+}
