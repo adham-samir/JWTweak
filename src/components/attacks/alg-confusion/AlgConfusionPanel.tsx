@@ -60,13 +60,16 @@ export function AlgConfusionPanel() {
   }, [])
 
   const handleForge = useCallback(async () => {
-    if (!pemContent) {
+    // For 'none' algorithm, no key needed
+    if (signingAlgorithm === 'none') {
+      await forgeToken(null)
       return
     }
+    if (!pemContent) return
     // Use the raw PEM bytes as the HMAC secret
     const secret = new TextEncoder().encode(pemContent)
     await forgeToken(secret)
-  }, [pemContent, forgeToken])
+  }, [pemContent, signingAlgorithm, forgeToken])
 
   const handleAlgChange = useCallback((alg: JwtAlgorithm) => {
     setSigningAlgorithm(alg)
