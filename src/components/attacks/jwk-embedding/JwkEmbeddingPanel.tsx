@@ -6,7 +6,7 @@ import { useKeyManager } from '../../../hooks/useKeyManager'
 import { JsonEditor } from '../../shared/JsonEditor'
 import { KeyUpload } from '../../shared/KeyUpload'
 import { OutputToken } from '../../shared/OutputToken'
-import { CopyButton } from '../../shared/CopyButton'
+import { CollapsibleBox } from '../../shared/CollapsibleBox'
 
 export function JwkEmbeddingPanel() {
   const { decoded } = useJWTState()
@@ -143,59 +143,50 @@ export function JwkEmbeddingPanel() {
             animate={{ opacity: 1, height: 'auto' }}
             transition={{ duration: 0.2 }}
           >
-            <div style={{
-              border: '1px solid var(--border)',
-              borderRadius: 'var(--radius-md)',
-              overflow: 'hidden',
-              background: 'var(--bg-secondary)',
-            }}>
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                padding: '8px 14px',
-                borderBottom: '1px solid var(--border)',
-                background: 'var(--bg-tertiary)',
-              }}>
-                <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                  Header with Embedded JWK
-                </span>
-                <CopyButton
-                  text={JSON.stringify({
-                    alg: 'RS256',
-                    jwk: {
-                      kty: activeKey.publicKeyJwk.kty || 'RSA',
-                      n: (activeKey.publicKeyJwk as any).n || '',
-                      e: (activeKey.publicKeyJwk as any).e || '',
-                      use: 'sig',
-                    },
-                  }, null, 2)}
-                  label="Copy Header"
-                />
-              </div>
-              <pre style={{
-                fontFamily: 'var(--mono)',
-                fontSize: 13,
-                color: 'var(--text-primary)',
-                padding: '12px 14px',
-                margin: 0,
-                whiteSpace: 'pre-wrap',
-                wordBreak: 'break-all',
-                maxHeight: 300,
-                overflowY: 'auto',
-                background: 'var(--bg-code)',
-              }}>
-                {JSON.stringify({
-                  alg: 'RS256',
-                  jwk: {
-                    kty: activeKey.publicKeyJwk.kty || 'RSA',
-                    n: (activeKey.publicKeyJwk as any).n || '',
-                    e: (activeKey.publicKeyJwk as any).e || '',
-                    use: 'sig',
-                  },
-                }, null, 2)}
-              </pre>
-            </div>
+            <CollapsibleBox
+              title="Header with Embedded JWK"
+              content={JSON.stringify({
+                alg: 'RS256',
+                jwk: {
+                  kty: activeKey.publicKeyJwk.kty || 'RSA',
+                  n: (activeKey.publicKeyJwk as any).n || '',
+                  e: (activeKey.publicKeyJwk as any).e || '',
+                  use: 'sig',
+                },
+              }, null, 2)}
+            />
+          </motion.div>
+        )}
+
+        {/* Public Key PEM */}
+        {activeKey?.publicKeyPem && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            transition={{ duration: 0.25 }}
+          >
+            <CollapsibleBox
+              title="Public Key (PEM)"
+              content={activeKey.publicKeyPem}
+              defaultOpen={false}
+              downloadFilename="jwtweak_public.pem"
+            />
+          </motion.div>
+        )}
+
+        {/* Private Key PEM */}
+        {activeKey?.privateKeyPem && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            transition={{ duration: 0.3 }}
+          >
+            <CollapsibleBox
+              title="Private Key (PEM)"
+              content={activeKey.privateKeyPem}
+              defaultOpen={false}
+              downloadFilename="jwtweak_private.pem"
+            />
           </motion.div>
         )}
 

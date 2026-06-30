@@ -6,6 +6,7 @@ import { useKeyManager } from '../../../hooks/useKeyManager'
 import { JsonEditor } from '../../shared/JsonEditor'
 import { OutputToken } from '../../shared/OutputToken'
 import { CopyButton } from '../../shared/CopyButton'
+import { CollapsibleBox } from '../../shared/CollapsibleBox'
 
 export function JkuInjectionPanel() {
   const { decoded } = useJWTState()
@@ -137,39 +138,17 @@ export function JkuInjectionPanel() {
           </button>
         </div>
 
-        {/* JWKS output */}
+        {/* JWKS — always visible first */}
         {activeKey?.jwks && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             transition={{ duration: 0.2 }}
           >
-            <PemBlock
+            <CollapsibleBox
               title="JWKS (host this at the JKU URL above)"
               content={JSON.stringify(activeKey.jwks, null, 2)}
             />
-          </motion.div>
-        )}
-
-        {/* Public Key PEM */}
-        {activeKey?.publicKeyPem && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            transition={{ duration: 0.25 }}
-          >
-            <PemBlock title="Public Key (PEM)" content={activeKey.publicKeyPem} />
-          </motion.div>
-        )}
-
-        {/* Private Key PEM */}
-        {activeKey?.privateKeyPem && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            transition={{ duration: 0.3 }}
-          >
-            <PemBlock title="Private Key (PEM)" content={activeKey.privateKeyPem} />
           </motion.div>
         )}
 
@@ -178,7 +157,7 @@ export function JkuInjectionPanel() {
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
-            transition={{ duration: 0.35 }}
+            transition={{ duration: 0.25 }}
           >
             <div style={{
               border: '1px solid var(--border)',
@@ -203,6 +182,38 @@ export function JkuInjectionPanel() {
                 <KeyParamRow label="e" value={(activeKey.publicKeyJwk as any).e || ''} />
               </div>
             </div>
+          </motion.div>
+        )}
+
+        {/* Public Key PEM — after n&e, with download */}
+        {activeKey?.publicKeyPem && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            transition={{ duration: 0.3 }}
+          >
+            <CollapsibleBox
+              title="Public Key (PEM)"
+              content={activeKey.publicKeyPem}
+              defaultOpen={false}
+              downloadFilename="jwtweak_public.pem"
+            />
+          </motion.div>
+        )}
+
+        {/* Private Key PEM — last, with download */}
+        {activeKey?.privateKeyPem && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            transition={{ duration: 0.35 }}
+          >
+            <CollapsibleBox
+              title="Private Key (PEM)"
+              content={activeKey.privateKeyPem}
+              defaultOpen={false}
+              downloadFilename="jwtweak_private.pem"
+            />
           </motion.div>
         )}
 
@@ -272,45 +283,6 @@ function KeyParamRow({ label, value }: { label: string; value: string }) {
         {value}
         <CopyButton text={value} />
       </span>
-    </div>
-  )
-}
-
-function PemBlock({ title, content }: { title: string; content: string }) {
-  return (
-    <div style={{
-      border: '1px solid var(--border)',
-      borderRadius: 'var(--radius-md)',
-      overflow: 'hidden',
-      background: 'var(--bg-secondary)',
-    }}>
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: '8px 14px',
-        borderBottom: '1px solid var(--border)',
-        background: 'var(--bg-tertiary)',
-      }}>
-        <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-          {title}
-        </span>
-        <CopyButton text={content} label="Copy" />
-      </div>
-      <pre style={{
-        fontFamily: 'var(--mono)',
-        fontSize: 12,
-        color: 'var(--text-primary)',
-        padding: '12px 14px',
-        margin: 0,
-        whiteSpace: 'pre-wrap',
-        wordBreak: 'break-all',
-        maxHeight: 240,
-        overflowY: 'auto',
-        background: 'var(--bg-code)',
-      }}>
-        {content}
-      </pre>
     </div>
   )
 }

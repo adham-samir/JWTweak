@@ -1,3 +1,4 @@
+import { CopyButton } from './CopyButton'
 import type { DecodedPart } from '../../types/jwt.types'
 
 interface TokenDisplayProps {
@@ -56,17 +57,26 @@ export function TokenDisplay({ label, color, part, showRaw = true }: TokenDispla
 
       {showRaw && (
         <div style={{
+          display: 'flex',
+          alignItems: 'flex-start',
+          justifyContent: 'space-between',
+          gap: 8,
           padding: '8px 14px',
-          fontFamily: 'var(--mono)',
-          fontSize: 12,
-          color: 'var(--text-secondary)',
-          wordBreak: 'break-all',
           background: 'var(--bg-code)',
-          lineHeight: 1.6,
           borderBottom: '1px solid var(--border)',
         }}>
-          <span style={{ color: 'var(--text-muted)', fontSize: 10 }}>{'raw> '}</span>
-          {part.raw}
+          <div style={{
+            fontFamily: 'var(--mono)',
+            fontSize: 12,
+            color: 'var(--text-secondary)',
+            wordBreak: 'break-all',
+            lineHeight: 1.6,
+            flex: 1,
+          }}>
+            <span style={{ color: 'var(--text-muted)', fontSize: 10 }}>{'raw> '}</span>
+            {part.raw}
+          </div>
+          <CopyButton text={part.raw} />
         </div>
       )}
 
