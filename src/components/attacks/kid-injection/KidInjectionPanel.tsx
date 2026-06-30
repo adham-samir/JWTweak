@@ -60,7 +60,7 @@ export function KidInjectionPanel() {
 
   const handleForge = useCallback(async () => {
     const secret = new TextEncoder().encode(secretText)
-    await forgeToken(secret, 'HS256')
+    await forgeToken(secret)
   }, [secretText, forgeToken])
 
   const handleAlgChange = useCallback((alg: JwtAlgorithm) => {

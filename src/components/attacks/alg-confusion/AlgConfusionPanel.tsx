@@ -65,7 +65,7 @@ export function AlgConfusionPanel() {
     }
     // Use the raw PEM bytes as the HMAC secret
     const secret = new TextEncoder().encode(pemContent)
-    await forgeToken(secret, 'HS256')
+    await forgeToken(secret)
   }, [pemContent, forgeToken])
 
   const handleAlgChange = useCallback((alg: JwtAlgorithm) => {
