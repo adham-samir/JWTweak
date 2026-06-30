@@ -1,5 +1,6 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { useJWTState } from '../../context/JWTContext'
 import { JsonEditor } from '../shared/JsonEditor'
 import { AlgorithmSelector } from '../shared/AlgorithmSelector'
 import { OutputToken } from '../shared/OutputToken'
@@ -9,9 +10,23 @@ import { importPrivateKeyPEM, rsaImportParams, rsaPssImportParams, ecImportParam
 import type { JwtAlgorithm } from '../../types/jwt.types'
 
 export function EncoderPanel() {
+  const { decoded } = useJWTState()
+
   const [header, setHeader] = useState<Record<string, unknown>>({ alg: 'HS256', typ: 'JWT' })
   const [payload, setPayload] = useState<Record<string, unknown>>({ sub: 'user', iat: Math.floor(Date.now() / 1000) })
   const [algorithm, setAlgorithm] = useState<JwtAlgorithm>('HS256')
+
+  // Pre-fill from decoded token when switching from Decode
+  useEffect(() => {
+    if (decoded) {
+      setHeader({ ...decoded.header.json })
+      setPayload({ ...decoded.payload.json })
+      const alg = decoded.header.json.alg as JwtAlgorithm
+      if (alg && alg !== 'none') setAlgorithm(alg)
+      setEncodedToken(null)
+      setEncodeError(null)
+    }
+  }, [decoded])
   const [hmacSecret, setHmacSecret] = useState('')
   const [pemKey, setPemKey] = useState('')
   const [pemError, setPemError] = useState<string | null>(null)
