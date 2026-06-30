@@ -1,0 +1,41 @@
+src/components/attacks/AttacksPage.tsx
+  s_9ead5b04687f5d::t_467a57d81875d6 1-7,9-13,16-17,20-24,26-33,36,39-40,42-44,46,50,53,56,58-76
+src/components/attacks/alg-confusion/AlgConfusionPanel.tsx
+  s_9ead5b04687f5d::t_e227ac64fc78a5 83
+src/components/attacks/kid-injection/KidInjectionPanel.tsx
+  s_9ead5b04687f5d::t_7e2eae6d5f05ec 96
+src/App.tsx
+  s_9ead5b04687f5d::t_fbe97b5c2501ed 2-3,5-6,8,14-34,42-47
+src/components/attacks/jku-injection/JkuInjectionPanel.tsx
+  s_9ead5b04687f5d::t_219bb034ce5578 57
+src/components/attacks/jwk-embedding/JwkEmbeddingPanel.tsx
+  s_9ead5b04687f5d::t_10a71e90740402 73
+src/components/decoder/DecoderPanel.tsx
+  s_9ead5b04687f5d::t_aa84a571765dcc 22-23,25,27,42-53,289
+src/components/encoder/EncoderPanel.tsx
+  s_9ead5b04687f5d::t_741009954a9d2b 1-147
+src/components/home/HomePage.tsx
+  s_9ead5b04687f5d::t_e3a410d3ba448f 1-179
+src/components/layout/TopNav.tsx
+  s_9ead5b04687f5d::t_a9ed104419439a 1-14,16-26,30-31,33,36,41-77,79-95
+src/context/JWTContext.tsx
+  s_9ead5b04687f5d::t_4863a18dfe9d33 26
+src/types/jwt.types.ts
+  s_9ead5b04687f5d::t_0f2f26915e36a9 2,4-8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "998ba40292599200b78771fe06ec339d112eb2e0",
+  "prompts": {},
+  "sessions": {
+    "s_9ead5b04687f5d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8c22d915-4889-4cd8-be11-e674e8a660ce",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "Adham Samir <adhamsamir.work@gmail.com>"
+    }
+  }
+}
