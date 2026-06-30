@@ -1,0 +1,21 @@
+src/components/decoder/DecoderPanel.tsx
+  s_9ead5b04687f5d::t_5277207dbb7940 8,288-292
+src/components/shared/SignatureVerifier.tsx
+  s_9ead5b04687f5d::t_ee36b6cb62d1a2 1-207
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "c4fd17fba5a2a6ac638b1a6b7c9610ba3cb1aab4",
+  "prompts": {},
+  "sessions": {
+    "s_9ead5b04687f5d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8c22d915-4889-4cd8-be11-e674e8a660ce",
+        "model": "unknown"
+      },
+      "human_author": "Adham Samir <adhamsamir.work@gmail.com>"
+    }
+  }
+}
