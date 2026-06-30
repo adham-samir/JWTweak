@@ -5,6 +5,7 @@ import { DecoderPanel } from './components/decoder/DecoderPanel'
 import { EncoderPanel } from './components/encoder/EncoderPanel'
 import { AttacksPage } from './components/attacks/AttacksPage'
 import { KeyToolsPanel } from './components/attacks/key-tools/KeyToolsPanel'
+import { Analytics } from '@vercel/analytics/react'
 import { AnimatePresence, motion } from 'framer-motion'
 
 function AppContent() {
@@ -47,6 +48,7 @@ export default function App() {
         <TopNav />
         <AppContent />
       </div>
+      <Analytics />
 
       <style>{`
         @keyframes forgeFlash {
