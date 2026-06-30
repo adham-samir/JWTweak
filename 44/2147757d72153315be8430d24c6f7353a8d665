@@ -1,0 +1,21 @@
+src/components/attacks/alg-confusion/AlgConfusionPanel.tsx
+  s_9ead5b04687f5d::t_4da408bdf305bc 68
+src/components/attacks/kid-injection/KidInjectionPanel.tsx
+  s_9ead5b04687f5d::t_3554e56a20c661 63
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "442147757d72153315be8430d24c6f7353a8d665",
+  "prompts": {},
+  "sessions": {
+    "s_9ead5b04687f5d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8c22d915-4889-4cd8-be11-e674e8a660ce",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "Adham Samir <adhamsamir.work@gmail.com>"
+    }
+  }
+}
