@@ -32,12 +32,12 @@ export function JkuInjectionPanel() {
   const handleForge = useCallback(async () => {
     if (!activeKey || !modifiedHeader) return
 
-    // Set the jku header
+    // Build header with jku URL — pass directly to avoid async state issue
     const header = { ...modifiedHeader, jku: jkuUrl, alg: 'RS256' }
     setModifiedHeader(header)
 
-    // Forge with the generated private key
-    await forgeToken(activeKey.privateKey, 'RS256')
+    // Forge with the generated private key, passing header directly
+    await forgeToken(activeKey.privateKey, 'RS256', header)
   }, [activeKey, jkuUrl, modifiedHeader, forgeToken, setModifiedHeader])
 
   if (!decoded) {

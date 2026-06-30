@@ -53,7 +53,7 @@ export function JwkEmbeddingPanel() {
     const header = { ...modifiedHeader, alg: 'RS256', jwk: jwkForHeader }
     setModifiedHeader(header)
 
-    await forgeToken(activeKey.privateKey, 'RS256')
+    await forgeToken(activeKey.privateKey, 'RS256', header)
   }, [activeKey, modifiedHeader, forgeToken, setModifiedHeader])
 
   if (!decoded) {

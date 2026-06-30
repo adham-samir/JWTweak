@@ -23,8 +23,10 @@ export function useForgedToken() {
   const forgeToken = useCallback(async (
     key?: CryptoKey | Uint8Array | null,
     algorithmOverride?: JwtAlgorithm,
+    headerOverride?: Record<string, unknown>,
   ) => {
-    if (!modifiedHeader || !modifiedPayload) {
+    const header = headerOverride || modifiedHeader
+    if (!header || !modifiedPayload) {
       dispatch({ type: 'SET_FORGED_TOKEN', token: null, error: 'No header/payload to sign' })
       return
     }
@@ -34,7 +36,7 @@ export function useForgedToken() {
 
     try {
       const alg = algorithmOverride || signingAlgorithm
-      const token = await signJWT(modifiedHeader, modifiedPayload, {
+      const token = await signJWT(header, modifiedPayload, {
         algorithm: alg,
         key: key ?? null,
       })
