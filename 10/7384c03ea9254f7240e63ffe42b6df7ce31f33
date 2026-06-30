@@ -1,0 +1,33 @@
+src/components/decoder/DecoderPanel.tsx
+  s_9ead5b04687f5d::t_a7c5254e5fa370 1-348
+src/components/shared/AlgorithmSelector.tsx
+  s_9ead5b04687f5d::t_32baa56260db17 1-52
+src/components/shared/ClaimLabels.tsx
+  s_9ead5b04687f5d::t_11930303dac0d1 1-67
+src/components/shared/CopyButton.tsx
+  s_9ead5b04687f5d::t_0016cccda131ec 1-85
+src/components/shared/JsonEditor.tsx
+  s_9ead5b04687f5d::t_cb5c17245193aa 1-96
+src/components/shared/KeyUpload.tsx
+  s_9ead5b04687f5d::t_f3cac2c454d191 1-161
+src/components/shared/OutputToken.tsx
+  s_9ead5b04687f5d::t_cf4feded108ad4 1-143
+src/components/shared/TokenDisplay.tsx
+  s_9ead5b04687f5d::t_12985f3325d466 1-85
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "107384c03ea9254f7240e63ffe42b6df7ce31f33",
+  "prompts": {},
+  "sessions": {
+    "s_9ead5b04687f5d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8c22d915-4889-4cd8-be11-e674e8a660ce",
+        "model": "unknown"
+      },
+      "human_author": "Adham Samir <adhamsamir.work@gmail.com>"
+    }
+  }
+}
