@@ -172,7 +172,7 @@ export function AlgConfusionPanel() {
         {/* Forge button */}
         <button
           onClick={handleForge}
-          disabled={isForging || !pemContent}
+          disabled={isForging || (signingAlgorithm !== 'none' && !pemContent)}
           style={{
             padding: '10px 24px',
             border: 'none',
