@@ -80,7 +80,7 @@ export function AlgConfusionPanel() {
 
 
   if (!decoded) {
-    return <EmptyPanel title="Algorithm Confusion" desc="Paste a JWT token in the Decoder above first." />
+    return <EmptyPanel title="Algorithm Confusion" desc="Paste a JWT token in the Decode tab first." />
   }
 
   return (

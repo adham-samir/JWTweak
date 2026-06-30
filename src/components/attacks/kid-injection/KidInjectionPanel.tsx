@@ -93,7 +93,7 @@ export function KidInjectionPanel() {
           color: 'var(--text-muted)',
           fontSize: 14,
         }}>
-          Paste a JWT token in the Decoder above first.
+          Paste a JWT token in the Decode tab first.
         </div>
       </motion.div>
     )

@@ -23,7 +23,7 @@ export interface JWTState {
 }
 
 const initialState: JWTState = {
-  activeTab: 'decoder',
+  activeTab: 'home',
   rawToken: '',
   decoded: null,
   decodeError: null,

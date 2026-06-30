@@ -19,36 +19,12 @@ export function DecoderPanel() {
     <motion.div
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, ease: 'easeOut' }}
-      style={{
-        border: '1px solid var(--border)',
-        borderRadius: 'var(--radius-lg)',
-        background: 'var(--bg-secondary)',
-        overflow: 'hidden',
-        boxShadow: 'var(--shadow-md)',
-      }}
+      transition={{ duration: 0.3 }}
+      style={{ maxWidth: 900, margin: '0 auto', padding: '28px 24px' }}
     >
-      {/* Title bar */}
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: '12px 18px',
-        borderBottom: '1px solid var(--border)',
-        background: 'var(--bg-tertiary)',
-      }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <span style={{
-            width: 10,
-            height: 10,
-            borderRadius: '50%',
-            background: decoded ? 'var(--success)' : 'var(--text-muted)',
-            boxShadow: decoded ? '0 0 8px rgba(63, 185, 128, 0.4)' : undefined,
-            transition: 'all var(--transition-fast)',
-          }} />
-          <span style={{ fontSize: 15, fontWeight: 600 }}>
-            JWT Decoder
-          </span>
+          <h2 style={{ fontSize: 22, fontWeight: 700, margin: 0 }}>Decode JWT</h2>
           {decoded && (
             <span style={{
               fontSize: 11,
@@ -62,52 +38,19 @@ export function DecoderPanel() {
             </span>
           )}
         </div>
-
         <div style={{ display: 'flex', gap: 8 }}>
-          <button
-            onClick={() => setShowSamples(!showSamples)}
-            style={{
-              padding: '4px 10px',
-              fontSize: 12,
-              border: '1px solid var(--border)',
-              borderRadius: 'var(--radius-sm)',
-              background: 'var(--bg-secondary)',
-              color: 'var(--text-secondary)',
-              cursor: 'pointer',
-              fontFamily: 'var(--sans)',
-              fontWeight: 500,
-              transition: 'all var(--transition-fast)',
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.borderColor = 'var(--border-hover)'
-              e.currentTarget.style.color = 'var(--text-primary)'
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.borderColor = 'var(--border)'
-              e.currentTarget.style.color = 'var(--text-secondary)'
-            }}
-          >
-            📦 Samples
-          </button>
-          {rawToken && (
-            <button
-              onClick={clearToken}
-              style={{
-                padding: '4px 10px',
-                fontSize: 12,
-                border: '1px solid var(--border)',
-                borderRadius: 'var(--radius-sm)',
-                background: 'var(--bg-secondary)',
-                color: 'var(--text-secondary)',
-                cursor: 'pointer',
-                fontFamily: 'var(--sans)',
-                fontWeight: 500,
-                transition: 'all var(--transition-fast)',
-              }}
-            >
-              ✕ Clear
-            </button>
-          )}
+          <button onClick={() => setShowSamples(!showSamples)} style={{
+            padding: '4px 10px', fontSize: 12, border: '1px solid var(--border)',
+            borderRadius: 'var(--radius-sm)', background: 'var(--bg-secondary)',
+            color: 'var(--text-secondary)', cursor: 'pointer', fontFamily: 'var(--sans)',
+            fontWeight: 500, transition: 'all var(--transition-fast)',
+          }}>📦 Samples</button>
+          {rawToken && <button onClick={clearToken} style={{
+            padding: '4px 10px', fontSize: 12, border: '1px solid var(--border)',
+            borderRadius: 'var(--radius-sm)', background: 'var(--bg-secondary)',
+            color: 'var(--text-secondary)', cursor: 'pointer', fontFamily: 'var(--sans)',
+            fontWeight: 500, transition: 'all var(--transition-fast)',
+          }}>✕ Clear</button>}
         </div>
       </div>
 
@@ -343,7 +286,7 @@ export function DecoderPanel() {
             {'{ }'}
           </div>
           <div style={{ fontSize: 14 }}>
-            Paste a JWT above to decode it
+            Paste a JWT to decode it
           </div>
           <div style={{ fontSize: 12, marginTop: 4, opacity: 0.6 }}>
             or click "Samples" to try a demo token

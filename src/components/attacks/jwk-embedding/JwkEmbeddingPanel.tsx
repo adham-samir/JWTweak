@@ -70,7 +70,7 @@ export function JwkEmbeddingPanel() {
       >
         <PanelHeader title="JWK Embedding" desc="Embed attacker's public key directly in jwk header" icon="🔐" />
         <div style={{ padding: '40px 18px', textAlign: 'center', color: 'var(--text-muted)', fontSize: 14 }}>
-          Paste a JWT token in the Decoder above first.
+          Paste a JWT token in the Decode tab first.
         </div>
       </motion.div>
     )

@@ -54,7 +54,7 @@ export function JkuInjectionPanel() {
       >
         <PanelHeader title="JKU Injection" desc="Embed attacker-controlled JWKS URL in jku header" icon="🌐" />
         <div style={{ padding: '40px 18px', textAlign: 'center', color: 'var(--text-muted)', fontSize: 14 }}>
-          Paste a JWT token in the Decoder above first.
+          Paste a JWT token in the Decode tab first.
         </div>
       </motion.div>
     )

@@ -1,10 +1,15 @@
 export type TabId =
+  | 'home'
   | 'decoder'
+  | 'encoder'
+  | 'attacks'
+  | 'key-tools'
+
+export type AttackSubTab =
   | 'alg-confusion'
   | 'kid-injection'
   | 'jku-injection'
   | 'jwk-embedding'
-  | 'key-tools'
 
 export type JwtAlgorithm =
   | 'none'
