@@ -1,0 +1,19 @@
+src/components/attacks/jku-injection/JkuInjectionPanel.tsx
+  s_9ead5b04687f5d::t_6aa69b3edbd2de 220-226
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "c17140e650c214c53b20f52ee23961a84970f588",
+  "prompts": {},
+  "sessions": {
+    "s_9ead5b04687f5d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8c22d915-4889-4cd8-be11-e674e8a660ce",
+        "model": "unknown"
+      },
+      "human_author": "Adham Samir <adhamsamir.work@gmail.com>"
+    }
+  }
+}
